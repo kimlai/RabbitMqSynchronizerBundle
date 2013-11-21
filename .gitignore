@@ -2,9 +2,12 @@
 *.swp
 *.tags
 
-
 # Symfony
 vendor
+bin
+bundles
+cache
+logs
 
 # Composer
 composer.phar

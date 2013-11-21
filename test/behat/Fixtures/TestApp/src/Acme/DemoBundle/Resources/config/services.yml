@@ -1,0 +1,6 @@
+parameters:
+    acme_demo_bundle.consumer.class: Acme\DemoBundle\RabbitMq\Consumer
+
+services:
+    acme_demo_bundle.consumer:
+        class: %acme_demo_bundle.consumer.class%
