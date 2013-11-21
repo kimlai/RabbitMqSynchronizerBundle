@@ -2,8 +2,9 @@
 
 namespace Lrqdo\Bundle\RabbitMqSynchronizerBundle\SynchronousRabbitMq;
 
+use Lrqdo\Bundle\RabbitMqSynchronizerBundle\Event\AMQPMessageEvent;
+use Lrqdo\Bundle\RabbitMqSynchronizerBundle\Listener\AMQPMessageListener;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Lrqdo\Bundle\RabbitMqSynchronizerBundle\Listener\AmqMessageListener;
 
 class Broker
 {
@@ -12,36 +13,26 @@ class Broker
      */
     private $dispatcher;
 
-    /**
-     * @var listeners
-     */
-    private $listeners;
-
     public function __construct(EventDispatcherInterface $dispatcher)
     {
         $this->dispatcher = $dispatcher;
-        $this->listeners = array();
     }
 
-    public function registerSynchronousConsumer(Consumer $consumer)
+    public function registerConsumer(Consumer $consumer)
     {
         foreach ($consumer->getQueueOptions()['routing_keys'] as $routingKey) {
-            $this->listeners[$routingKey] = new AmqMessageListener($consumer, $routingKey);
-        }
-    }
-
-    public function start()
-    {
-        foreach ($this->listeners as $event => $listener) {
             $this->dispatcher->addListener(
-                $event,
-                array($listener, 'execute')
-            );     
+                $routingKey,
+                array(
+                    new AMQPMessageListener($consumer, $routingKey),
+                    'execute',
+                )
+            );
         }
     }
 
-    public function getDispatcher()
+    public function notifyConsumers($routingKey, AMQPMessageEvent $event)
     {
-        return $this->dispatcher;
+        $this->dispatcher->dispatch($routingKey, $event);
     }
 }
