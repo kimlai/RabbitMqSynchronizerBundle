@@ -18,7 +18,7 @@ class RegisterProducersPass implements CompilerPassInterface
             $definition = $container->getDefinition($id);
             $definition->setClass('Lrqdo\Bundle\RabbitMqSynchronizerBundle\SynchronousRabbitMq\Producer');
             $definition->addMethodCall(
-                'setSynchronousRabbitMqServer',
+                'setBroker',
                 array(new Reference('lrqdo.rabbitmq_synchronizer.broker'))
             );
         }

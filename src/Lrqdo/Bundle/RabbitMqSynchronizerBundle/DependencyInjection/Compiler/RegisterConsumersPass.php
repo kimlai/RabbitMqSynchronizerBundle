@@ -20,7 +20,7 @@ class RegisterConsumersPass implements CompilerPassInterface
             $consumerDefinition = $container->getDefinition($id);
             $consumerDefinition->setClass('Lrqdo\Bundle\RabbitMqSynchronizerBundle\SynchronousRabbitMq\Consumer');
             $definition->addMethodCall(
-                'registerSynchronousConsumer',
+                'registerConsumer',
                 array(new Reference($id))
             );
         }

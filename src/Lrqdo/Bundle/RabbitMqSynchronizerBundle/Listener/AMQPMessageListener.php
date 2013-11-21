@@ -3,10 +3,10 @@
 namespace Lrqdo\Bundle\RabbitMqSynchronizerBundle\Listener;
 
 use PhpAmqpLib\Message\AMQPMessage;
-use Lrqdo\Bundle\RabbitMqSynchronizerBundle\Event\AmqMessageEvent;
+use Lrqdo\Bundle\RabbitMqSynchronizerBundle\Event\AMQPMessageEvent;
 use Lrqdo\Bundle\RabbitMqSynchronizerBundle\SynchronousRabbitMq\Consumer;
 
-class AmqMessageListener
+class AMQPMessageListener
 {
     /**
      * @var Consumer
@@ -18,8 +18,8 @@ class AmqMessageListener
         $this->consumer = $consumer;
     }
 
-    public function execute(AmqMessageEvent $event)
+    public function execute(AMQPMessageEvent $event)
     {
-        $this->consumer->getCallback()[0]->execute(new AMQPMessage($event->getMessage()));
+        call_user_func($this->consumer->getCallback(), new AMQPMessage($event->getMessage()));
     }
 }
