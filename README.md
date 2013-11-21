@@ -4,7 +4,7 @@
 
 When using asynchronous messaging system such as [RabbitMQ](http://www.rabbitmq.com/), it's rather difficult to use functional tests to see if your messages are correctly published and consumed, and test the overall behaviour of your application.
 
-This bundle tranforms the RabbitMq broker provided by the [RabbitMqBundle](https://github.com/videlalvaro/RabbitMqBundle) into a Symfony2 synchronous event dispatcher, thus enabling easy testing using function test frameworks (such as [Behat](http://behat.org/)).
+This bundle tranforms the RabbitMq broker provided by the [RabbitMqBundle](https://github.com/videlalvaro/RabbitMqBundle) into a Symfony2 synchronous event dispatcher, thus enabling easy testing, using functional test frameworks (such as [Behat](http://behat.org/)).
 
 ## Installation ##
 
