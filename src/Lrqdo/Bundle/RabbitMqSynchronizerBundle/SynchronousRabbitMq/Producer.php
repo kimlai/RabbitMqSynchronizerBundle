@@ -18,8 +18,6 @@ class Producer extends \OldSound\RabbitMqBundle\RabbitMq\Producer
 
     public function publish($msgBody, $routingKey = '')
     {
-        echo "----------- PUBLISH !! " . $routingKey . " ----------------\n";
-        echo "msgBody " . $msgBody . " ----------------\n";
         $this->broker->start();
         $this->broker->getDispatcher()->dispatch($routingKey, new AmqMessageEvent($msgBody));
     }
