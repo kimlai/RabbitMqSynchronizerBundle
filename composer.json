@@ -1,0 +1,18 @@
+{
+    "name": "kimlai/rabbitmq-synchronizer-bundle",
+    "description": "easily test your rabbitmq consumers in functional tests",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "autoload": {
+        "psr-0": {
+            "Lrqdo\\Bundle\\RabbitMqSynchronizerBundle": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "~2.2",
+        "sensio/framework-extra-bundle": "~2.2",
+        "oldsound/rabbitmq-bundle": "1.2.*"
+    },
+    "minimum-stability": "stable"
+}

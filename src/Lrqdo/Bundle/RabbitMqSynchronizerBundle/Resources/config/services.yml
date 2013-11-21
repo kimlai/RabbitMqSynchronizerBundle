@@ -1,0 +1,8 @@
+parameters:
+    lrqdo.rabbitmq_synchronizer.broker.class: Lrqdo\Bundle\RabbitMqSynchronizerBundle\SynchronousRabbitMq\Broker
+
+services:
+    lrqdo.rabbitmq_synchronizer.broker:
+        class: %lrqdo.rabbitmq_synchronizer.broker.class%
+        arguments:
+            - "@event_dispatcher"
