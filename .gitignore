@@ -1,3 +1,11 @@
+# IDEs
+*.swp
+*.tags
+
+
+# Symfony
 vendor
+
+# Composer
 composer.phar
 composer.lock
