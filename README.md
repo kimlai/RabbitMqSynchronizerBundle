@@ -32,6 +32,7 @@ public function registerBundles()
 ````
 
 Install the bundle :
+
 ````
 $ php composer.phar update kimlai/rabbitmq-synchronizer-bundle
 ````
@@ -45,3 +46,13 @@ When you're running you app in the __dev__ or __test__ environment, the bundle w
 Then it looks for all services with the tags `old_sound_rabbit_mq.producer` or `old_sound_rabbit_mq.consumer`, and replaces them with custom instances, providing all the necesary plumbing so that the app behaves exactly like it did before, only in a synchronous way.
 
 Once this is done, when your producers publish messages on a topic, the consumers are executed synchronously from within Symfony, just like any EventListener.
+
+# Tests ##
+
+This bundle is tested with [behat](http://behat.org). The tests are located the `features/` folder.
+
+To run the test suite :
+
+````
+$ ./vendor/bin/behat
+````

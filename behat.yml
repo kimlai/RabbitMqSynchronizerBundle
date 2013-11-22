@@ -1,0 +1,11 @@
+default:
+    extensions:
+        Behat\Symfony2Extension\Extension:
+            #mink_driver: true
+            kernel:
+                env: test
+                debug: true
+                path: test/behat/Fixtures/TestApp/app/AppKernel.php
+                bootstrap: features/bootstrap/FeatureContext.php
+        Behat\MinkExtension\Extension:
+              default_session: 'symfony2'
