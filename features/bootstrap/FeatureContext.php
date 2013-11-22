@@ -19,7 +19,7 @@ require_once 'PHPUnit/Framework/Assert/Functions.php';
 /**
  * Features context.
  */
-class FeatureContext extends MinkContext
+class FeatureContext extends BehatContext
 {
     use KernelDictionary;
 
