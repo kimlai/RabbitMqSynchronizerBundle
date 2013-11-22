@@ -2,23 +2,22 @@
 
 namespace Lrqdo\Bundle\RabbitMqSynchronizerBundle\SynchronousRabbitMq;
 
-use Lrqdo\Bundle\RabbitMqSynchronizerBundle\Event\AmqMessageEvent;
+use Lrqdo\Bundle\RabbitMqSynchronizerBundle\Event\AMQPMessageEvent;
 
 class Producer extends \OldSound\RabbitMqBundle\RabbitMq\Producer
 {
     /**
-     * @var SynchronousBroker
+     * @var Broker
      */
     private $broker;
 
-    public function setSynchronousRabbitMqServer(Broker $broker)
+    public function setBroker(Broker $broker)
     {
         $this->broker = $broker;
     }
 
     public function publish($msgBody, $routingKey = '')
     {
-        $this->broker->start();
-        $this->broker->getDispatcher()->dispatch($routingKey, new AmqMessageEvent($msgBody));
+        $this->broker->notifyConsumers($routingKey, new AMQPMessageEvent($msgBody));
     }
 }

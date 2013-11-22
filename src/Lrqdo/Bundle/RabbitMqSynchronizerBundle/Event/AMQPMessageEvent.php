@@ -4,7 +4,7 @@ namespace Lrqdo\Bundle\RabbitMqSynchronizerBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 
-class AmqMessageEvent extends Event
+class AMQPMessageEvent extends Event
 {
     /**
      * @var $message
