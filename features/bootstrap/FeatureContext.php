@@ -1,17 +1,13 @@
 <?php
 
+use Hamcrest\MatcherAssert as ha,
+    Hamcrest\Matchers as hm;
+
 use Behat\Behat\Context\BehatContext,
     Behat\Behat\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 use Behat\Symfony2Extension\Context\KernelDictionary;
-
-//
-// Require 3rd-party libraries here:
-//
-require_once 'PHPUnit/Autoload.php';
-require_once 'PHPUnit/Framework/Assert/Functions.php';
-//
 
 /**
  * Features context.
@@ -27,9 +23,13 @@ class FeatureContext extends BehatContext
     {
         $producer = $this->getContainer()->get($name);
         
-        assertInstanceOf(
-            $this->getContainer()->getParameter('old_sound_rabbit_mq.producer.class'),
-            $producer
+        ha::assertThat(
+            $producer,
+            hm::is(hm::anInstanceOf(
+                $this
+                    ->getContainer()
+                    ->getParameter('old_sound_rabbit_mq.producer.class')
+            ))
         );
     }
 
@@ -39,16 +39,20 @@ class FeatureContext extends BehatContext
     public function thereIsAConsumerNamed($name, $topic)
     {
         $consumer = $this->getContainer()->get($name);
-        
-        assertInstanceOf(
-            $this->getContainer()->getParameter('old_sound_rabbit_mq.consumer.class'),
-            $consumer
+
+        ha::assertThat(
+            $consumer,
+            hm::is(hm::anInstanceOf(
+                $this
+                    ->getContainer()
+                    ->getParameter('old_sound_rabbit_mq.consumer.class')
+            ))
         );
 
-        assertTrue(in_array(
-            $topic,
-            $consumer->getQueueOptions()['routing_keys']
-        ));
+        ha::assertThat(
+            $consumer->getQueueOptions()['routing_keys'],
+            hm::is(hm::arrayContaining($topic))
+        );
     }
 
     /**
@@ -73,7 +77,7 @@ class FeatureContext extends BehatContext
             ->getCallback()[0]
             ->getExecuteCalls();
 
-        assertEquals(1, count($consumerCalls));
-        assertEquals($consumerCalls[0]->body, $message);
+        ha::assertThat(count($consumerCalls), hm::is(hm::identicalTo(1)));
+        ha::assertThat($message, hm::is(hm::identicalTo($consumerCalls[0]->body)));
     }
 }
