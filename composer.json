@@ -11,7 +11,7 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "~2.5",
-        "oldsound/rabbitmq-bundle": "1.2.*"
+        "oldsound/rabbitmq-bundle": "v1.5.0"
     },
     "require-dev": {
         "behat/behat": "2.5.*@stable",
