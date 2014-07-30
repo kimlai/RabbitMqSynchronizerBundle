@@ -1,5 +1,7 @@
 # RabbitMqSychronizerBundle
 
+[![Build Status](https://travis-ci.org/kimlai/RabbitMqSynchronizerBundle.svg?branch=master)](https://travis-ci.org/kimlai/RabbitMqSynchronizerBundle) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kimlai/RabbitMqSynchronizerBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kimlai/RabbitMqSynchronizerBundle/?branch=master)
+
 ## About ##
 
 When using asynchronous messaging system such as [RabbitMQ](http://www.rabbitmq.com/), it's rather difficult to use functional tests to see if your messages are correctly published and consumed, and test the overall behaviour of your application.
