@@ -16,7 +16,7 @@ class Producer extends \OldSound\RabbitMqBundle\RabbitMq\Producer
         $this->broker = $broker;
     }
 
-    public function publish($msgBody, $routingKey = '')
+    public function publish($msgBody, $routingKey = '', $additionalProperties = [])
     {
         $this->broker->notifyConsumers($routingKey, new AMQPMessageEvent($msgBody));
     }
