@@ -10,7 +10,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/framework-bundle": "<3",
+        "symfony/framework-bundle": "~2|~3",
         "oldsound/rabbitmq-bundle": ">=1.5"
     },
     "require-dev": {
